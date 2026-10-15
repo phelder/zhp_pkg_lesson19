@@ -1,0 +1,50 @@
+managed with additional save with full data
+implementation in class ZBP_R_ONLINESHOP_HP unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_ONLINESHOP_HP alias ZrOnlineshopHp
+persistent table ZONLINESHOP_HP
+extensible
+draft table ZONLINESHOP_HP_D
+etag master LocalLastChangedAt
+lock master
+total etag LastChangedAt
+authorization master( global )
+{
+    event OrderCreated parameter ZA_ORDER_EVT_HP;
+
+  field ( readonly )
+   OrderUUID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   OrderUUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZONLINESHOP_HP corresponding extensible
+  {
+    OrderUUID = ORDER_UUID;
+    Ordereditem = ORDEREDITEM;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+}

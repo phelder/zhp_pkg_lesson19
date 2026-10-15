@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_ONLINESHOP_HP'
+@MappingRole: true
+define role ZR_ONLINESHOP_HP {
+  grant select on ZR_ONLINESHOP_HP
+  where TRUE;
+}

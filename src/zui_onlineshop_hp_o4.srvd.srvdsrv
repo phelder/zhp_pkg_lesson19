@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_ONLINESHOP_HP'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_ONLINESHOP_HP'
+  }
+}
+define service ZUI_ONLINESHOP_HP_O4 provider contracts odata_v4_ui {
+  expose ZC_ONLINESHOP_HP;
+}
